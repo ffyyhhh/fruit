@@ -16,7 +16,7 @@
   <!-- ============ 顶部公告条 ============ -->
   <div class="topbar">
     <div class="container topbar-inner">
-      <span>🚚 满 99 元顺丰包邮 · 坏果包赔 · 今日下单，明日开吃</span>
+      <span data-text="banner">🚚 满 99 元顺丰包邮 · 坏果包赔 · 今日下单，明日开吃</span>
       <a href="#products">去逛逛 ↓</a>
     </div>
   </div>
@@ -26,19 +26,19 @@
     <div class="container nav-inner">
       <a class="logo" href="#top">
         <img src="assets/leaf.svg" alt="" width="26" height="26" />
-        <span>王总水果店</span>
+        <span data-text="shopName">王总水果店</span>
       </a>
 
       <nav class="nav-links" id="nav-links">
+        <a href="#campaign">活动</a>
         <a href="#products">当季鲜果</a>
         <a href="#why">为什么选我们</a>
-        <a href="#story">果园故事</a>
         <a href="#order">下单流程</a>
       </nav>
 
       <div class="nav-actions">
-        <a class="nav-phone" href="tel:13800000000" data-shop-tel>
-          <span data-shop="phone">138-0000-0000</span>
+        <a class="nav-phone" href="tel:18823356789" data-shop-tel>
+          <span data-shop="phone">188-2335-6789</span>
         </a>
 
         <button class="cart-btn" id="cart-open" type="button" aria-label="打开果篮">
@@ -60,7 +60,7 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-copy">
-          <span class="pill">🌿 本周到货：云南蓝莓 · 丹东草莓</span>
+          <span class="pill" data-text="notice">🌿 本周到货：云南蓝莓 · 丹东草莓</span>
 
           <h1>把果园的甜<br /><span class="hl">24 小时</span>送到家</h1>
 
@@ -102,6 +102,29 @@
       </div>
     </div>
 
+    <!-- ============ 活动 ============ -->
+    <section class="campaign" id="campaign">
+      <div class="container campaign-inner">
+        <div class="campaign-copy">
+          <span class="campaign-tag" data-text="campaignTag">限定</span>
+          <h2 data-text="campaignTitle">十月尝鲜节</h2>
+          <p data-text="campaignDesc">满 199 减 20 · 满 99 减 10 · 再送云南蓝莓试吃装一份</p>
+        </div>
+
+        <div class="campaign-side">
+          <div class="countdown" id="countdown" hidden>
+            <span class="cd-label">距结束</span>
+            <span class="cd-num" id="cd-d">00</span><i>天</i>
+            <span class="cd-num" id="cd-h">00</span><i>时</i>
+            <span class="cd-num" id="cd-m">00</span><i>分</i>
+            <span class="cd-num" id="cd-s">00</span><i>秒</i>
+          </div>
+
+          <div class="coupons" id="coupons"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ 当季鲜果 ============ -->
     <section class="section" id="products">
       <div class="container">
@@ -111,116 +134,8 @@
           <p class="section-sub">每周三上新。只卖正当季的水果，过季就下架。</p>
         </div>
 
-        <div class="grid-products">
-
-          <article class="product reveal">
-            <div class="product-media">
-              <span class="tag tag-hot">当季</span>
-              <img src="assets/orange.jpg" alt="赣南脐橙" />
-            </div>
-            <div class="product-body">
-              <h3>赣南脐橙</h3>
-              <p class="origin">江西赣州 · 5 斤装</p>
-              <div class="product-foot">
-                <div class="price"><strong>¥39.9</strong><del>¥49.9</del></div>
-                <button class="add-btn" type="button"
-                  data-add data-id="orange" data-name="赣南脐橙" data-spec="5 斤装" data-price="39.9">
-                  加入果篮
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <article class="product reveal">
-            <div class="product-media">
-              <span class="tag tag-hot">限时</span>
-              <img src="assets/strawberry.jpg" alt="丹东草莓" />
-            </div>
-            <div class="product-body">
-              <h3>丹东草莓</h3>
-              <p class="origin">辽宁丹东 · 2 斤装</p>
-              <div class="product-foot">
-                <div class="price"><strong>¥68.0</strong><del>¥88.0</del></div>
-                <button class="add-btn" type="button"
-                  data-add data-id="strawberry" data-name="丹东草莓" data-spec="2 斤装" data-price="68">
-                  加入果篮
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <article class="product reveal">
-            <div class="product-media">
-              <span class="tag">人气</span>
-              <img src="assets/grape.jpg" alt="阳光玫瑰葡萄" />
-            </div>
-            <div class="product-body">
-              <h3>阳光玫瑰葡萄</h3>
-              <p class="origin">云南宾川 · 3 斤装</p>
-              <div class="product-foot">
-                <div class="price"><strong>¥59.9</strong><del>¥79.0</del></div>
-                <button class="add-btn" type="button"
-                  data-add data-id="grape" data-name="阳光玫瑰葡萄" data-spec="3 斤装" data-price="59.9">
-                  加入果篮
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <article class="product reveal">
-            <div class="product-media">
-              <span class="tag tag-hot">当季</span>
-              <img src="assets/mango.jpg" alt="海南贵妃芒" />
-            </div>
-            <div class="product-body">
-              <h3>海南贵妃芒</h3>
-              <p class="origin">海南三亚 · 5 斤装</p>
-              <div class="product-foot">
-                <div class="price"><strong>¥45.0</strong><del>¥55.0</del></div>
-                <button class="add-btn" type="button"
-                  data-add data-id="mango" data-name="海南贵妃芒" data-spec="5 斤装" data-price="45">
-                  加入果篮
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <article class="product reveal">
-            <div class="product-media">
-              <span class="tag tag-pre">预售</span>
-              <img src="assets/peach.jpg" alt="阳山水蜜桃" />
-            </div>
-            <div class="product-body">
-              <h3>阳山水蜜桃</h3>
-              <p class="origin">江苏无锡 · 6 个装</p>
-              <div class="product-foot">
-                <div class="price"><strong>¥78.0</strong><del>¥98.0</del></div>
-                <button class="add-btn" type="button"
-                  data-add data-id="peach" data-name="阳山水蜜桃" data-spec="6 个装" data-price="78">
-                  加入果篮
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <article class="product reveal">
-            <div class="product-media">
-              <span class="tag tag-new">新到</span>
-              <img src="assets/blueberry.jpg" alt="云南蓝莓" />
-            </div>
-            <div class="product-body">
-              <h3>云南蓝莓</h3>
-              <p class="origin">云南澄江 · 4 盒装</p>
-              <div class="product-foot">
-                <div class="price"><strong>¥89.0</strong><del>¥109.0</del></div>
-                <button class="add-btn" type="button"
-                  data-add data-id="blueberry" data-name="云南蓝莓" data-spec="4 盒装" data-price="89">
-                  加入果篮
-                </button>
-              </div>
-            </div>
-          </article>
-
+        <div class="grid-products" id="product-grid">
+          <noscript>请打开浏览器的 JavaScript，才能看到商品列表。</noscript>
         </div>
       </div>
     </section>
@@ -358,7 +273,7 @@
           <div class="step reveal">
             <span class="step-num">01</span>
             <h3>挑水果</h3>
-            <p>点“加入果篮”，把想要的水果放进去，页面会自动算好价格和运费。</p>
+            <p>点“加入果篮”，把想要的水果放进去，页面会自动算好满减和运费。</p>
           </div>
           <div class="step reveal">
             <span class="step-num">02</span>
@@ -379,10 +294,10 @@
       <div class="container cta-inner">
         <div>
           <h2>今天下单，明天开吃</h2>
-          <p>现在下单，送你一盒云南蓝莓试吃装（满 99 元可用）。</p>
+          <p data-text="ctaDesc">现在下单，送你一盒云南蓝莓试吃装（满 99 元可用）。</p>
         </div>
         <div class="cta-actions">
-          <a class="btn btn-light" href="tel:13800000000" data-shop-tel>打电话下单</a>
+          <a class="btn btn-light" href="tel:18823356789" data-shop-tel>打电话下单</a>
           <button class="btn btn-outline-light" id="copy-wechat-2" type="button">加微信下单</button>
         </div>
       </div>
@@ -396,7 +311,7 @@
       <div>
         <div class="footer-logo">
           <img src="assets/leaf.svg" alt="" width="24" height="24" />
-          <span>王总水果店</span>
+          <span data-text="shopName">王总水果店</span>
         </div>
         <p class="footer-desc">只卖当季水果。产地直发，全程冷链，坏果包赔。</p>
       </div>
@@ -404,9 +319,9 @@
       <div>
         <h3>逛一逛</h3>
         <ul>
+          <li><a href="#campaign">本月活动</a></li>
           <li><a href="#products">当季鲜果</a></li>
           <li><a href="#why">为什么选我们</a></li>
-          <li><a href="#story">果园故事</a></li>
           <li><a href="#order">下单流程</a></li>
         </ul>
       </div>
@@ -414,17 +329,17 @@
       <div>
         <h3>联系我们</h3>
         <ul>
-          <li><a href="tel:13800000000" data-shop-tel><span data-shop="phone">138-0000-0000</span></a></li>
-          <li>微信：<span data-shop="wechat">guoyuan-fresh</span></li>
-          <li>营业时间：每天 8:00 – 21:00</li>
-          <li>发货地：<span data-shop="address">云南省昆明市</span></li>
+          <li><a href="tel:18823356789" data-shop-tel><span data-shop="phone">188-2335-6789</span></a></li>
+          <li>微信：<span data-shop="wechat">facai168</span></li>
+          <li>营业时间：<span data-shop="hours">每天 8:00 – 21:00</span></li>
+          <li>发货地：<span data-shop="address">广东省化州市</span></li>
         </ul>
       </div>
 
       <div>
         <h3>配送说明</h3>
         <ul>
-          <li>满 99 元包邮，不满 99 元运费 10 元</li>
+          <li><span data-text="shipLine">满 99 元包邮，不满 99 元运费 10 元</span></li>
           <li>顺丰冷链，下单后 24 小时内发货</li>
           <li>坏果包赔，收到 24 小时内拍照反馈</li>
         </ul>
@@ -432,7 +347,7 @@
     </div>
 
     <div class="container footer-bottom">
-      <span>© <span id="year">2026</span> 王总水果店 · 本站为演示站点</span>
+      <span>© <span id="year">2026</span> <span data-text="shopName">王总水果店</span> · 本站为演示站点</span>
       <span>备案号占位：京 ICP 备 00000000 号</span>
     </div>
   </footer>
@@ -453,9 +368,10 @@
 
     <footer class="cart-foot">
       <div class="cart-line"><span>商品小计</span><span id="sum-subtotal">¥0.00</span></div>
+      <div class="cart-line" id="discount-line" hidden><span>满减优惠</span><span id="sum-discount">-¥0.00</span></div>
       <div class="cart-line"><span>运费</span><span id="sum-shipping">¥0.00</span></div>
       <div class="cart-line cart-line-total"><span>合计</span><strong id="sum-total">¥0.00</strong></div>
-      <p class="cart-tip">满 99 元包邮，不满 99 元运费 10 元</p>
+      <p class="cart-tip" id="cart-tip">满 99 元包邮，不满 99 元运费 10 元</p>
 
       <button class="btn btn-primary btn-block" id="checkout" type="button">复制订单信息</button>
       <button class="btn btn-ghost btn-block" id="cart-clear" type="button">清空果篮</button>
@@ -464,6 +380,7 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+  <script src="data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

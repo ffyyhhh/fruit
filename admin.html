@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>后台 · 商品与活动管理</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0 0 90px;
+      background: #f5f6f8; color: #23262d;
+      font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      font-size: 14px; line-height: 1.6;
+    }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 14px 24px; background: #fff; border-bottom: 1px solid #e5e7eb;
+    }
+    header h1 { margin: 0; font-size: 16px; }
+    header .hint { color: #8a909c; font-size: 12px; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    section {
+      margin-bottom: 18px; padding: 20px 22px;
+      background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+    }
+    section h2 { margin: 0 0 14px; font-size: 15px; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 18px; }
+    .grid.three { grid-template-columns: repeat(3, 1fr); }
+    label { display: block; font-size: 12px; color: #6b7280; margin-bottom: 4px; }
+    input, select {
+      width: 100%; padding: 8px 10px; font-size: 13px; font-family: inherit;
+      border: 1px solid #d7dbe2; border-radius: 8px; background: #fff;
+    }
+    input:focus, select:focus { outline: 2px solid #ffd9c2; border-color: #ef5a2a; }
+    button {
+      font-family: inherit; font-size: 13px; cursor: pointer;
+      padding: 8px 14px; border-radius: 8px; border: 1px solid #d7dbe2; background: #fff;
+    }
+    button:hover { border-color: #ef5a2a; color: #ef5a2a; }
+    .primary { background: #ef5a2a; border-color: #ef5a2a; color: #fff; font-weight: 700; }
+    .primary:hover { background: #d2471a; color: #fff; }
+    .btnbar { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .row { display: grid; grid-template-columns: 64px 1.3fr .8fr .8fr .7fr .7fr .8fr .8fr 96px; gap: 8px; align-items: center; margin-bottom: 8px; }
+    .row.head { font-size: 12px; color: #8a909c; }
+    .row .thumb { width: 56px; height: 56px; border-radius: 8px; background: #f3f4f6; object-fit: contain; }
+    .row .ops { display: flex; gap: 4px; }
+    .row .ops button { padding: 4px 8px; font-size: 12px; }
+
+    .crumb { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .crumb span { font-size: 12px; color: #8a909c; }
+    .del { color: #d33; }
+
+    footer.bar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 12px 24px; background: #1f2329; color: #cbd2dc;
+    }
+    footer.bar .msg { font-size: 12px; }
+    #toast {
+      position: fixed; left: 50%; bottom: 80px; transform: translate(-50%, 10px);
+      background: #1f2329; color: #fff; padding: 10px 18px; border-radius: 999px;
+      font-size: 13px; opacity: 0; visibility: hidden; transition: .25s; z-index: 30;
+    }
+    #toast.show { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+    @media (max-width: 900px) {
+      .grid, .grid.three { grid-template-columns: 1fr; }
+      .row { grid-template-columns: 1fr 1fr; }
+      .row.head { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>后台 · 商品与活动管理</h1>
+    <div class="hint">改完点右下角“下载 data.js”，然后上传覆盖 GitHub 上的同名文件</div>
+  </div>
+  <div class="btnbar">
+    <button type="button" id="reload">恢复为线上 data.js</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <h2>① 店铺信息</h2>
+    <div class="grid">
+      <div><label>店名</label><input id="shopName" /></div>
+      <div><label>电话（显示用，带横线）</label><input id="phone" /></div>
+      <div><label>电话（拨号用，纯数字）</label><input id="phoneRaw" /></div>
+      <div><label>客服微信号</label><input id="wechat" /></div>
+      <div><label>发货地</label><input id="address" /></div>
+      <div><label>营业时间</label><input id="hours" /></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>② 文案</h2>
+    <div class="grid">
+      <div><label>顶部公告条</label><input id="banner" /></div>
+      <div><label>首屏小标签</label><input id="notice" /></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>③ 运费与满减</h2>
+    <div class="grid three">
+      <div><label>满多少包邮（元）</label><input id="freeFrom" type="number" /></div>
+      <div><label>不满时的运费（元）</label><input id="fee" type="number" /></div>
+      <div>
+        <label>&nbsp;</label>
+        <button type="button" id="addDiscount">+ 增加一档满减</button>
+      </div>
+    </div>
+    <div id="discounts" style="margin-top:12px"></div>
+    <p style="margin:10px 0 0;font-size:12px;color:#8a909c">结算时自动取最划算的一档，例如满 199 减 20 和满 99 减 10 会二选一。</p>
+  </section>
+
+  <section>
+    <h2>④ 活动与优惠券</h2>
+    <div class="grid">
+      <div><label>活动角标（如：限定 / 秒杀）</label><input id="campTag" /></div>
+      <div><label>活动标题</label><input id="campTitle" /></div>
+      <div><label>活动说明</label><input id="campDesc" /></div>
+      <div><label>倒计时结束时间</label><input id="campEnd" type="datetime-local" /></div>
+    </div>
+
+    <div style="margin-top:16px">
+      <div class="crumb"><strong>优惠券</strong><button type="button" id="addCoupon">+ 增加一张</button></div>
+      <div id="coupons"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>⑤ 商品列表</h2>
+    <div class="row head">
+      <div>图片</div><div>名称</div><div>规格</div><div>产地</div>
+      <div>现价</div><div>原价</div><div>角标文字</div><div>角标颜色</div><div>操作</div>
+    </div>
+    <div id="products"></div>
+    <div style="margin-top:12px">
+      <button type="button" class="primary" id="addProduct">+ 新增一个商品</button>
+    </div>
+    <p style="margin:10px 0 0;font-size:12px;color:#8a909c">
+      图片路径写 <code>assets/xxx.jpg</code> 或 <code>assets/xxx.svg</code>。原价留空则不显示划线价。角标文字留空则不显示角标。
+    </p>
+  </section>
+
+</div>
+
+<footer class="bar">
+  <div class="msg" id="msg">数据已加载</div>
+  <div class="btnbar">
+    <button type="button" id="copy">复制代码</button>
+    <button type="button" class="primary" id="download">⬇ 下载 data.js</button>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<!-- 读取当前线上数据（同目录的 data.js） -->
+<script src="data.js"></script>
+<script>
+(function () {
+  const state = JSON.parse(JSON.stringify(window.STORE || {}));
+
+  const $ = (id) => document.getElementById(id);
+  const toastEl = $('toast');
+
+  function toast(text) {
+    toastEl.textContent = text;
+    toastEl.classList.add('show');
+    clearTimeout(toast.t);
+    toast.t = setTimeout(() => toastEl.classList.remove('show'), 1800);
+  }
+
+  /* ---------- 简单表单绑定 ---------- */
+  const FIELDS = [
+    ['shopName', 'shop.name'], ['phone', 'shop.phone'], ['phoneRaw', 'shop.phoneRaw'],
+    ['wechat', 'shop.wechat'], ['address', 'shop.address'], ['hours', 'shop.hours'],
+    ['banner', 'banner'], ['notice', 'notice'],
+    ['freeFrom', 'shipping.freeFrom'], ['fee', 'shipping.fee'],
+    ['campTag', 'campaign.tag'], ['campTitle', 'campaign.title'],
+    ['campDesc', 'campaign.desc'],
+  ];
+
+  function getPath(path) {
+    return path.split('.').reduce((o, k) => (o == null ? '' : o[k]), state);
+  }
+  function setPath(path, value) {
+    const keys = path.split('.');
+    let obj = state;
+    for (let i = 0; i < keys.length - 1; i++) obj = obj[keys[i]];
+    obj[keys[keys.length - 1]] = value;
+  }
+
+  FIELDS.forEach(([id, path]) => {
+    const el = $(id);
+    el.value = getPath(path) == null ? '' : getPath(path);
+    el.addEventListener('input', () => setPath(path, el.value));
+  });
+
+  // 倒计时：datetime-local 需要 yyyy-MM-ddTHH:mm
+  const endInput = $('campEnd');
+  function toLocalInput(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return '';
+    const pad = (n) => String(n).padStart(2, '0');
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) +
+      'T' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+  }
+  endInput.value = toLocalInput(state.campaign && state.campaign.end);
+  endInput.addEventListener('input', () => {
+    setPath('campaign.end', endInput.value ? new Date(endInput.value).toISOString() : '');
+  });
+
+  /* ---------- 满减 ---------- */
+  function renderDiscounts() {
+    const box = $('discounts');
+    box.innerHTML = '';
+    (state.discounts || []).forEach((d, i) => {
+      const div = document.createElement('div');
+      div.className = 'row';
+      div.style.gridTemplateColumns = '1fr 1fr 96px';
+      div.innerHTML =
+        '<div><label>满（元）</label><input type="number" value="' + d.min + '" data-d="' + i + '" data-k="min"></div>' +
+        '<div><label>减（元）</label><input type="number" value="' + d.off + '" data-d="' + i + '" data-k="off"></div>' +
+        '<div style="padding-top:18px"><button type="button" class="del" data-del-discount="' + i + '">删除</button></div>';
+      box.appendChild(div);
+    });
+  }
+
+  $('discounts').addEventListener('input', (e) => {
+    const el = e.target;
+    if (!el.dataset.k) return;
+    state.discounts[Number(el.dataset.d)][el.dataset.k] = el.value;
+  });
+  $('discounts').addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-del-discount]');
+    if (!btn) return;
+    state.discounts.splice(Number(btn.dataset.delDiscount), 1);
+    renderDiscounts();
+  });
+  $('addDiscount').addEventListener('click', () => {
+    state.discounts = state.discounts || [];
+    state.discounts.push({ min: 99, off: 10 });
+    renderDiscounts();
+  });
+
+  /* ---------- 优惠券 ---------- */
+  function renderCoupons() {
+    const box = $('coupons');
+    box.innerHTML = '';
+    (state.coupons || []).forEach((c, i) => {
+      const div = document.createElement('div');
+      div.className = 'row';
+      div.style.gridTemplateColumns = '1fr 1fr 1.4fr 96px';
+      div.innerHTML =
+        '<div><label>券码</label><input value="' + (c.code || '') + '" data-c="' + i + '" data-k="code"></div>' +
+        '<div><label>标题</label><input value="' + (c.title || '') + '" data-c="' + i + '" data-k="title"></div>' +
+        '<div><label>说明</label><input value="' + (c.desc || '') + '" data-c="' + i + '" data-k="desc"></div>' +
+        '<div style="padding-top:18px"><button type="button" class="del" data-del-coupon="' + i + '">删除</button></div>';
+      box.appendChild(div);
+    });
+  }
+
+  $('coupons').addEventListener('input', (e) => {
+    const el = e.target;
+    if (!el.dataset.k) return;
+    state.coupons[Number(el.dataset.c)][el.dataset.k] = el.value;
+  });
+  $('coupons').addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-del-coupon]');
+    if (!btn) return;
+    state.coupons.splice(Number(btn.dataset.delCoupon), 1);
+    renderCoupons();
+  });
+  $('addCoupon').addEventListener('click', () => {
+    state.coupons = state.coupons || [];
+    state.coupons.push({ code: 'CODE', title: '满 99 减 10', desc: '全场通用' });
+    renderCoupons();
+  });
+
+  /* ---------- 商品 ---------- */
+  const COLORS = [
+    ['orange', '橙色（当季/限时）'],
+    ['purple', '紫色（预售）'],
+    ['green', '绿色（新到）'],
+    ['ink', '黑色（人气）'],
+  ];
+
+  function renderProducts() {
+    const box = $('products');
+    box.innerHTML = '';
+    (state.products || []).forEach((p, i) => {
+      const div = document.createElement('div');
+      div.className = 'row';
+
+      const opts = COLORS.map(function (c) {
+        return '<option value="' + c[0] + '"' + (p.badgeColor === c[0] ? ' selected' : '') + '>' + c[1] + '</option>';
+      }).join('');
+
+      div.innerHTML =
+        '<img class="thumb" src="' + (p.img || '') + '" alt="" onerror="this.style.opacity=.2" />' +
+        '<div><input value="' + (p.name || '') + '" data-p="' + i + '" data-k="name" placeholder="名称"></div>' +
+        '<div><input value="' + (p.spec || '') + '" data-p="' + i + '" data-k="spec" placeholder="规格"></div>' +
+        '<div><input value="' + (p.origin || '') + '" data-p="' + i + '" data-k="origin" placeholder="产地"></div>' +
+        '<div><input type="number" step="0.1" value="' + (p.price || '') + '" data-p="' + i + '" data-k="price"></div>' +
+        '<div><input type="number" step="0.1" value="' + (p.oldPrice || '') + '" data-p="' + i + '" data-k="oldPrice"></div>' +
+        '<div><input value="' + (p.badge || '') + '" data-p="' + i + '" data-k="badge" placeholder="可不填"></div>' +
+        '<div><select data-p="' + i + '" data-k="badgeColor">' + opts + '</select></div>' +
+        '<div class="ops">' +
+          '<button type="button" data-up="' + i + '">↑</button>' +
+          '<button type="button" data-down="' + i + '">↓</button>' +
+          '<button type="button" class="del" data-del-p="' + i + '">删</button>' +
+        '</div>';
+
+      const imgInput = document.createElement('div');
+      imgInput.innerHTML = '<label>图片路径</label><input value="' + (p.img || '') + '" data-p="' + i + '" data-k="img" placeholder="assets/xxx.jpg">';
+      imgInput.style.gridColumn = '1 / -1';
+      imgInput.style.marginTop = '-4px';
+
+      box.appendChild(div);
+      box.appendChild(imgInput);
+    });
+  }
+
+  $('products').addEventListener('input', (e) => {
+    const el = e.target;
+    if (!el.dataset.k) return;
+    const i = Number(el.dataset.p);
+    state.products[i][el.dataset.k] = el.value;
+
+    if (el.dataset.k === 'img') {
+      const img = el.parentNode.previousElementSibling &&
+        el.closest('div').previousElementSibling.querySelector('.thumb');
+      if (img) img.src = el.value;
+    }
+  });
+
+  $('products').addEventListener('click', (e) => {
+    const t = e.target;
+    if (t.dataset.delP !== undefined) {
+      state.products.splice(Number(t.dataset.delP), 1);
+      renderProducts();
+    } else if (t.dataset.up !== undefined) {
+      const i = Number(t.dataset.up);
+      if (i > 0) {
+        const tmp = state.products[i - 1];
+        state.products[i - 1] = state.products[i];
+        state.products[i] = tmp;
+        renderProducts();
+      }
+    } else if (t.dataset.down !== undefined) {
+      const i = Number(t.dataset.down);
+      if (i < state.products.length - 1) {
+        const tmp = state.products[i + 1];
+        state.products[i + 1] = state.products[i];
+        state.products[i] = tmp;
+        renderProducts();
+      }
+    }
+  });
+
+  $('addProduct').addEventListener('click', () => {
+    state.products = state.products || [];
+    state.products.push({
+      id: 'item' + Date.now(),
+      name: '新水果',
+      spec: '5 斤装',
+      origin: '产地',
+      price: 39.9,
+      oldPrice: 49.9,
+      badge: '当季',
+      badgeColor: 'orange',
+      img: 'assets/leaf.svg',
+    });
+    renderProducts();
+  });
+
+  /* ---------- 导出 ---------- */
+  function buildCode() {
+    const out = JSON.parse(JSON.stringify(state));
+
+    out.shipping = out.shipping || { freeFrom: 99, fee: 10 };
+    out.shipping.freeFrom = Number(out.shipping.freeFrom) || 0;
+    out.shipping.fee = Number(out.shipping.fee) || 0;
+
+    out.discounts = (out.discounts || []).map((d) => ({
+      min: Number(d.min) || 0,
+      off: Number(d.off) || 0,
+    }));
+
+    out.products = (out.products || []).map((p) => ({
+      id: p.id || ('item' + Math.random().toString(36).slice(2, 8)),
+      name: p.name || '',
+      spec: p.spec || '',
+      origin: p.origin || '',
+      price: Number(p.price) || 0,
+      oldPrice: Number(p.oldPrice) || 0,
+      badge: p.badge || '',
+      badgeColor: p.badgeColor || 'ink',
+      img: p.img || '',
+    }));
+
+    return '/* 由后台生成 · ' + new Date().toLocaleString('zh-CN') + ' */\n' +
+      'window.STORE = ' + JSON.stringify(out, null, 2) + ';\n';
+  }
+
+  $('download').addEventListener('click', () => {
+    const blob = new Blob([buildCode()], { type: 'text/javascript;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'data.js';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      URL.revokeObjectURL(a.href);
+      a.remove();
+    }, 1000);
+    toast('已下载 data.js，去上传覆盖');
+    $('msg').textContent = '已下载 data.js · 记得上传到 GitHub 覆盖同名文件';
+  });
+
+  $('copy').addEventListener('click', () => {
+    const text = buildCode();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text)
+        .then(() => toast('代码已复制'))
+        .catch(() => fallbackCopy(text));
+    } else {
+      fallbackCopy(text);
+    }
+  });
+
+  function fallbackCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); toast('代码已复制'); }
+    catch (err) { toast('复制失败，请用下载按钮'); }
+    document.body.removeChild(ta);
+  }
+
+  $('reload').addEventListener('click', () => {
+    if (!confirm('放弃当前修改，重新读取 data.js？')) return;
+    location.reload();
+  });
+
+  /* ---------- 启动 ---------- */
+  renderDiscounts();
+  renderCoupons();
+  renderProducts();
+})();
+</script>
+</body>
+</html>

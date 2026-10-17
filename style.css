@@ -439,6 +439,122 @@ button { font-family: inherit; }
 }
 
 
+/* ---------- 6.5 活动区 ---------- */
+.campaign {
+  padding: 56px 0;
+  background: linear-gradient(120deg, #fff3e0, #ffe7d1 55%, #ffdcc0);
+  border-top: 1px solid rgba(239, 90, 42, .15);
+  border-bottom: 1px solid rgba(239, 90, 42, .15);
+}
+
+.campaign-inner {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.campaign-tag {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.campaign-copy h2 {
+  margin-bottom: 10px;
+  font-size: clamp(26px, 3.4vw, 40px);
+  font-weight: 900;
+  letter-spacing: -.02em;
+}
+
+.campaign-copy p {
+  margin: 0;
+  color: #7a5a45;
+  font-size: 16px;
+}
+
+.campaign-side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.countdown {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+  width: max-content;
+  padding: 12px 16px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.countdown[hidden] { display: none; }
+
+.cd-label {
+  margin-right: 4px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.cd-num {
+  font-variant-numeric: tabular-nums;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--orange);
+}
+
+.countdown i {
+  font-style: normal;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+.coupons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.coupon {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 176px;
+  padding: 14px 18px;
+  background: #fff;
+  border: 1px dashed rgba(239, 90, 42, .5);
+  border-radius: 14px;
+}
+
+.coupon strong { font-size: 16px; color: var(--orange); }
+.coupon span { font-size: 12px; color: var(--ink-2); }
+
+.coupon button {
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 5px 12px;
+  border: none;
+  border-radius: 999px;
+  background: #ffe9dd;
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+
+.coupon button:hover { background: var(--orange); color: #fff; }
+
+
 /* ---------- 7. 商品 ---------- */
 .grid-products {
   display: grid;
@@ -468,14 +584,8 @@ button { font-family: inherit; }
   place-items: center;
   aspect-ratio: 4 / 3;
   padding: 18px;
+  background: var(--tint, #f6efe6);
 }
-
-.product:nth-child(1) .product-media { background: #fff3e2; }
-.product:nth-child(2) .product-media { background: #ffeeef; }
-.product:nth-child(3) .product-media { background: #f3eefc; }
-.product:nth-child(4) .product-media { background: #fff6e0; }
-.product:nth-child(5) .product-media { background: #ffeef2; }
-.product:nth-child(6) .product-media { background: #eef2fc; }
 
 .product-media img {
   width: 88%;
@@ -503,6 +613,12 @@ button { font-family: inherit; }
 .tag-hot { background: var(--orange); }
 .tag-new { background: var(--green); }
 .tag-pre { background: #8a5bd6; }
+
+/* 商品角标颜色（由 data.js 的 badgeColor 决定） */
+.tag-orange { background: var(--orange); }
+.tag-green { background: var(--green); }
+.tag-purple { background: #8a5bd6; }
+.tag-ink { background: var(--ink); }
 
 .product-body {
   display: flex;
@@ -935,6 +1051,8 @@ button { font-family: inherit; }
   color: var(--ink-2);
 }
 
+.cart-line[hidden] { display: none; }
+
 .cart-line-total {
   align-items: baseline;
   margin-bottom: 6px;
@@ -1009,6 +1127,7 @@ button { font-family: inherit; }
 
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; gap: 28px; }
+  .campaign-inner { grid-template-columns: 1fr; gap: 26px; }
   .hero-art { order: -1; max-width: 400px; }
   .hero-copy { text-align: center; }
   .hero-sub { margin-inline: auto; }
