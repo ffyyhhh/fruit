@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="芒果">
+  <defs>
+    <linearGradient id="mangoBody" x1="10%" y1="10%" x2="90%" y2="90%">
+      <stop offset="0" stop-color="#ffe07a"/>
+      <stop offset=".45" stop-color="#ffbe3d"/>
+      <stop offset=".8" stop-color="#ff9a2e"/>
+      <stop offset="1" stop-color="#f4701f"/>
+    </linearGradient>
+    <linearGradient id="mangoLeaf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5cbf74"/>
+      <stop offset="1" stop-color="#2f7d4f"/>
+    </linearGradient>
+  </defs>
+
+  <ellipse cx="100" cy="186" rx="56" ry="8" fill="#2b1a0e" opacity=".08"/>
+
+  <path d="M78 48c26-12 58-2 74 24 18 28 14 64-10 84-24 20-60 20-80 0-20-20-22-52-10-76 6-14 14-26 26-32Z" fill="url(#mangoBody)"/>
+
+  <path d="M134 62c14 8 22 22 24 38 2 18-4 34-16 46-10 10-24 16-38 16 20-6 34-18 42-34 8-17 8-38 0-54-4-6-8-10-12-12Z" fill="#f4701f" opacity=".18"/>
+
+  <ellipse cx="86" cy="82" rx="24" ry="14" fill="#fff" opacity=".28" transform="rotate(-24 86 82)"/>
+
+  <path d="M78 48c-4-8-4-15 0-20" stroke="#5a3b1e" stroke-width="5" stroke-linecap="round" fill="none"/>
+  <path d="M74 30c10-10 28-10 38 0-10 10-28 10-38 0Z" fill="url(#mangoLeaf)"/>
+  <path d="M78 30h30" stroke="#256b42" stroke-width="2" opacity=".4"/>
+</svg>

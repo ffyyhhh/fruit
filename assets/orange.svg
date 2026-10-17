@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="脐橙">
+  <defs>
+    <radialGradient id="orangeBody" cx="35%" cy="28%" r="85%">
+      <stop offset="0" stop-color="#ffcb5c"/>
+      <stop offset=".5" stop-color="#ffa31f"/>
+      <stop offset="1" stop-color="#ef6c12"/>
+    </radialGradient>
+    <linearGradient id="orangeLeaf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#57b96f"/>
+      <stop offset="1" stop-color="#2f7d4f"/>
+    </linearGradient>
+  </defs>
+
+  <ellipse cx="100" cy="184" rx="58" ry="8" fill="#2b1a0e" opacity=".08"/>
+  <circle cx="100" cy="106" r="70" fill="url(#orangeBody)"/>
+
+  <g fill="#d95c0a" opacity=".16">
+    <circle cx="70" cy="88" r="2.6"/><circle cx="96" cy="70" r="2.2"/><circle cx="126" cy="88" r="2.8"/>
+    <circle cx="142" cy="112" r="2.4"/><circle cx="114" cy="140" r="2.6"/><circle cx="80" cy="134" r="2.2"/>
+    <circle cx="60" cy="112" r="2.2"/><circle cx="100" cy="112" r="2.4"/>
+  </g>
+
+  <ellipse cx="72" cy="72" rx="26" ry="17" fill="#fff" opacity=".3" transform="rotate(-28 72 72)"/>
+
+  <path d="M100 38c1-9 6-15 15-18" stroke="#6b4a2a" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <g transform="translate(112 10) rotate(-8)">
+    <path d="M0 0C12-15 36-15 48 0C36 13 12 13 0 0Z" fill="url(#orangeLeaf)"/>
+    <path d="M4 0h40" stroke="#256b42" stroke-width="2" opacity=".45"/>
+  </g>
+</svg>

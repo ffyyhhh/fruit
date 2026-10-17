@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="蓝莓">
+  <defs>
+    <radialGradient id="blueBody" cx="34%" cy="26%" r="80%">
+      <stop offset="0" stop-color="#9db4f0"/>
+      <stop offset=".5" stop-color="#5877cc"/>
+      <stop offset="1" stop-color="#2b468c"/>
+    </radialGradient>
+  </defs>
+
+  <ellipse cx="100" cy="188" rx="50" ry="7" fill="#2b1a0e" opacity=".08"/>
+
+  <g fill="url(#blueBody)">
+    <circle cx="72" cy="90" r="21"/><circle cx="100" cy="90" r="21"/><circle cx="128" cy="90" r="21"/>
+    <circle cx="55" cy="120" r="21"/><circle cx="84" cy="120" r="21"/><circle cx="113" cy="120" r="21"/><circle cx="142" cy="120" r="21"/>
+    <circle cx="72" cy="148" r="21"/><circle cx="100" cy="148" r="21"/><circle cx="128" cy="148" r="21"/>
+    <circle cx="86" cy="172" r="21"/><circle cx="114" cy="172" r="21"/>
+  </g>
+
+  <g fill="#1f3468" opacity=".45">
+    <g transform="translate(72 76)"><path d="M0-6 1.6-1.6 6 0 1.6 1.6 0 6-1.6 1.6-6 0-1.6-1.6Z"/></g>
+    <g transform="translate(100 76)"><path d="M0-6 1.6-1.6 6 0 1.6 1.6 0 6-1.6 1.6-6 0-1.6-1.6Z"/></g>
+    <g transform="translate(128 76)"><path d="M0-6 1.6-1.6 6 0 1.6 1.6 0 6-1.6 1.6-6 0-1.6-1.6Z"/></g>
+    <g transform="translate(55 106)"><path d="M0-6 1.6-1.6 6 0 1.6 1.6 0 6-1.6 1.6-6 0-1.6-1.6Z"/></g>
+    <g transform="translate(84 106)"><path d="M0-6 1.6-1.6 6 0 1.6 1.6 0 6-1.6 1.6-6 0-1.6-1.6Z"/></g>
+    <g transform="translate(113 106)"><path d="M0-6 1.6-1.6 6 0 1.6 1.6 0 6-1.6 1.6-6 0-1.6-1.6Z"/></g>
+    <g transform="translate(142 106)"><path d="M0-6 1.6-1.6 6 0 1.6 1.6 0 6-1.6 1.6-6 0-1.6-1.6Z"/></g>
+    <g transform="translate(72 134)"><path d="M0-6 1.6-1.6 6 0 1.6 1.6 0 6-1.6 1.6-6 0-1.6-1.6Z"/></g>
+    <g transform="translate(100 134)"><path d="M0-6 1.6-1.6 6 0 1.6 1.6 0 6-1.6 1.6-6 0-1.6-1.6Z"/></g>
+    <g transform="translate(128 134)"><path d="M0-6 1.6-1.6 6 0 1.6 1.6 0 6-1.6 1.6-6 0-1.6-1.6Z"/></g>
+  </g>
+
+  <g fill="#fff" opacity=".2">
+    <ellipse cx="66" cy="84" rx="6" ry="4" transform="rotate(-30 66 84)"/>
+    <ellipse cx="122" cy="84" rx="6" ry="4" transform="rotate(-30 122 84)"/>
+    <ellipse cx="78" cy="142" rx="6" ry="4" transform="rotate(-30 78 142)"/>
+    <ellipse cx="106" cy="166" rx="6" ry="4" transform="rotate(-30 106 166)"/>
+  </g>
+</svg>

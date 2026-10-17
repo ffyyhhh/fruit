@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>果园鲜生 · 当季水果产地直发，24 小时冷链到家</title>
+  <meta name="description" content="果园鲜生只卖当季水果：赣南脐橙、丹东草莓、阳光玫瑰、海南贵妃芒。产地直发，全程冷链，坏果包赔，满 99 元顺丰包邮。" />
+
+  <link rel="icon" href="assets/leaf.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ============ 顶部公告条 ============ -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>🚚 满 99 元顺丰包邮 · 坏果包赔 · 今日下单，明日开吃</span>
+      <a href="#products">去逛逛 ↓</a>
+    </div>
+  </div>
+
+  <!-- ============ 导航 ============ -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="#top">
+        <img src="assets/leaf.svg" alt="" width="26" height="26" />
+        <span>果园鲜生</span>
+      </a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="#products">当季鲜果</a>
+        <a href="#why">为什么选我们</a>
+        <a href="#story">果园故事</a>
+        <a href="#order">下单流程</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="nav-phone" href="tel:13800000000" data-shop-tel>
+          <span data-shop="phone">138-0000-0000</span>
+        </a>
+
+        <button class="cart-btn" id="cart-open" type="button" aria-label="打开果篮">
+          <span aria-hidden="true">🧺</span>
+          <span class="cart-btn-text">果篮</span>
+          <span class="cart-badge" id="cart-badge" hidden>0</span>
+        </button>
+
+        <button class="menu-btn" id="menu-btn" type="button" aria-label="打开菜单" aria-expanded="false">
+          <span aria-hidden="true">☰</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ 首屏 ============ -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="pill">🌿 本周到货：云南蓝莓 · 丹东草莓</span>
+
+          <h1>把果园的甜<br /><span class="hl">24 小时</span>送到家</h1>
+
+          <p class="hero-sub">
+            我们只做一件事：把刚摘下的当季水果装进箱子，用冷链送到你手上。
+            产地直发，坏果包赔，不好吃不要钱。
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#products">看看今天有什么</a>
+            <button class="btn btn-ghost" id="copy-wechat" type="button">复制微信号下单</button>
+          </div>
+
+          <div class="hero-trust">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span>4.9 分 · 12,000+ 个家庭的选择</span>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="blob"></div>
+          <img class="fl f1" src="assets/orange.svg" alt="" />
+          <img class="fl f2" src="assets/strawberry.svg" alt="" />
+          <img class="fl f3" src="assets/grape.svg" alt="" />
+          <img class="fl f4" src="assets/blueberry.svg" alt="" />
+          <span class="chip chip-a">🚚 产地直发</span>
+          <span class="chip chip-b">❄️ 全程冷链</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 信任条 ============ -->
+    <div class="trust">
+      <div class="container trust-inner">
+        <span>顺丰冷链包邮</span>
+        <span>坏果包赔</span>
+        <span>当日采摘 · 次日送达</span>
+        <span>满 99 减 10</span>
+      </div>
+    </div>
+
+    <!-- ============ 当季鲜果 ============ -->
+    <section class="section" id="products">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">当季鲜果</p>
+          <h2>这周刚下树的</h2>
+          <p class="section-sub">每周三上新。只卖正当季的水果，过季就下架。</p>
+        </div>
+
+        <div class="grid-products">
+
+          <article class="product reveal">
+            <div class="product-media">
+              <span class="tag tag-hot">当季</span>
+              <img src="assets/orange.svg" alt="赣南脐橙" />
+            </div>
+            <div class="product-body">
+              <h3>赣南脐橙</h3>
+              <p class="origin">江西赣州 · 5 斤装</p>
+              <div class="product-foot">
+                <div class="price"><strong>¥39.9</strong><del>¥49.9</del></div>
+                <button class="add-btn" type="button"
+                  data-add data-id="orange" data-name="赣南脐橙" data-spec="5 斤装" data-price="39.9">
+                  加入果篮
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product reveal">
+            <div class="product-media">
+              <span class="tag tag-hot">限时</span>
+              <img src="assets/strawberry.svg" alt="丹东草莓" />
+            </div>
+            <div class="product-body">
+              <h3>丹东草莓</h3>
+              <p class="origin">辽宁丹东 · 2 斤装</p>
+              <div class="product-foot">
+                <div class="price"><strong>¥68.0</strong><del>¥88.0</del></div>
+                <button class="add-btn" type="button"
+                  data-add data-id="strawberry" data-name="丹东草莓" data-spec="2 斤装" data-price="68">
+                  加入果篮
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product reveal">
+            <div class="product-media">
+              <span class="tag">人气</span>
+              <img src="assets/grape.svg" alt="阳光玫瑰葡萄" />
+            </div>
+            <div class="product-body">
+              <h3>阳光玫瑰葡萄</h3>
+              <p class="origin">云南宾川 · 3 斤装</p>
+              <div class="product-foot">
+                <div class="price"><strong>¥59.9</strong><del>¥79.0</del></div>
+                <button class="add-btn" type="button"
+                  data-add data-id="grape" data-name="阳光玫瑰葡萄" data-spec="3 斤装" data-price="59.9">
+                  加入果篮
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product reveal">
+            <div class="product-media">
+              <span class="tag tag-hot">当季</span>
+              <img src="assets/mango.svg" alt="海南贵妃芒" />
+            </div>
+            <div class="product-body">
+              <h3>海南贵妃芒</h3>
+              <p class="origin">海南三亚 · 5 斤装</p>
+              <div class="product-foot">
+                <div class="price"><strong>¥45.0</strong><del>¥55.0</del></div>
+                <button class="add-btn" type="button"
+                  data-add data-id="mango" data-name="海南贵妃芒" data-spec="5 斤装" data-price="45">
+                  加入果篮
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product reveal">
+            <div class="product-media">
+              <span class="tag tag-pre">预售</span>
+              <img src="assets/peach.svg" alt="阳山水蜜桃" />
+            </div>
+            <div class="product-body">
+              <h3>阳山水蜜桃</h3>
+              <p class="origin">江苏无锡 · 6 个装</p>
+              <div class="product-foot">
+                <div class="price"><strong>¥78.0</strong><del>¥98.0</del></div>
+                <button class="add-btn" type="button"
+                  data-add data-id="peach" data-name="阳山水蜜桃" data-spec="6 个装" data-price="78">
+                  加入果篮
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product reveal">
+            <div class="product-media">
+              <span class="tag tag-new">新到</span>
+              <img src="assets/blueberry.svg" alt="云南蓝莓" />
+            </div>
+            <div class="product-body">
+              <h3>云南蓝莓</h3>
+              <p class="origin">云南澄江 · 4 盒装</p>
+              <div class="product-foot">
+                <div class="price"><strong>¥89.0</strong><del>¥109.0</del></div>
+                <button class="add-btn" type="button"
+                  data-add data-id="blueberry" data-name="云南蓝莓" data-spec="4 盒装" data-price="89">
+                  加入果篮
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 为什么选我们 ============ -->
+    <section class="section why" id="why">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">为什么选我们</p>
+          <h2>水果这件事，只讲新鲜</h2>
+        </div>
+
+        <div class="grid-features">
+          <div class="feature reveal">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 20c8 0 16-6 16-16C10 4 4 12 4 20Z" />
+                <path d="M4 20C8 14 12 10 18 7" />
+              </svg>
+            </div>
+            <h3>产地直发</h3>
+            <p>跳过三级批发市场，从果园直接装箱。少一道转手，多一分新鲜。</p>
+          </div>
+
+          <div class="feature reveal">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 7h11v10H2z" />
+                <path d="M13 10h5l4 4v3h-9z" />
+                <circle cx="6" cy="18.5" r="1.8" />
+                <circle cx="17.5" cy="18.5" r="1.8" />
+              </svg>
+            </div>
+            <h3>全程冷链</h3>
+            <p>采摘 2 小时内预冷，泡沫箱加冰袋，顺丰冷链 24 小时送到家。</p>
+          </div>
+
+          <div class="feature reveal">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l7 3v6c0 4.2-2.9 7.4-7 9-4.1-1.6-7-4.8-7-9V6l7-3Z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+            </div>
+            <h3>坏果包赔</h3>
+            <p>收到有任何坏果，拍照发客服，立刻退款或补发，不用寄回。</p>
+          </div>
+
+          <div class="feature reveal">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v5l3.5 2" />
+              </svg>
+            </div>
+            <h3>只卖当季</h3>
+            <p>不当季的水果我们不上架。宁愿少卖，也不卖放了一个月的冷库货。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 果园故事 ============ -->
+    <section class="section story" id="story">
+      <div class="container story-inner">
+        <div class="story-visual reveal">
+          <img src="assets/orange.svg" alt="脐橙" />
+          <div class="story-badge">
+            <strong>2012</strong>
+            <span>从一片橙园开始</span>
+          </div>
+        </div>
+
+        <div class="story-copy reveal">
+          <p class="eyebrow">果园故事</p>
+          <h2>从一片 12 年的橙园开始</h2>
+          <p>
+            2012 年，我们在赣南包下了第一片脐橙园。那时候只想着把自家橙子卖出去，
+            没想到十年后，会和 30 多个果园一起，把当季的水果送到 12,000 多个家庭。
+          </p>
+          <p>
+            我们不做“全年都有”的水果生意。什么季节，就卖什么水果；哪个产地好，就去哪个产地。
+            你收到的每一箱，基本都是摘下不到 48 小时的新鲜果。
+          </p>
+
+          <div class="stats">
+            <div class="stat"><strong>12 年</strong><span>果园经验</span></div>
+            <div class="stat"><strong>30+</strong><span>合作果园</span></div>
+            <div class="stat"><strong>12,000+</strong><span>回头客家庭</span></div>
+            <div class="stat"><strong>98%</strong><span>好评率</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 客户评价 ============ -->
+    <section class="section reviews" id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">他们说</p>
+          <h2>买过一次，就留下来了</h2>
+        </div>
+
+        <div class="grid-reviews">
+          <figure class="review reveal">
+            <div class="stars" aria-label="5 分">★★★★★</div>
+            <blockquote>橙子收到的时候还带着叶子，切开汁水直接流到手上。我家小孩一口气吃了三个。</blockquote>
+            <figcaption>王女士 · 上海 · 买了 6 次</figcaption>
+          </figure>
+
+          <figure class="review reveal">
+            <div class="stars" aria-label="5 分">★★★★★</div>
+            <blockquote>草莓是我今年买到最甜的，没有一颗坏的。包装很用心，冰袋还是硬的。</blockquote>
+            <figcaption>李同学 · 杭州 · 买了 3 次</figcaption>
+          </figure>
+
+          <figure class="review reveal">
+            <div class="stars" aria-label="5 分">★★★★★</div>
+            <blockquote>有一次压坏了两颗，拍照发过去，当天就把钱退了。这种售后我服。</blockquote>
+            <figcaption>陈先生 · 深圳 · 买了 11 次</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 下单流程 ============ -->
+    <section class="section steps" id="order">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">怎么买</p>
+          <h2>三步，明天就能吃到</h2>
+        </div>
+
+        <div class="grid-steps">
+          <div class="step reveal">
+            <span class="step-num">01</span>
+            <h3>挑水果</h3>
+            <p>点“加入果篮”，把想要的水果放进去，页面会自动算好价格和运费。</p>
+          </div>
+          <div class="step reveal">
+            <span class="step-num">02</span>
+            <h3>发订单</h3>
+            <p>点“复制订单信息”，把内容发到客服微信，附上收货人、电话和地址。</p>
+          </div>
+          <div class="step reveal">
+            <span class="step-num">03</span>
+            <h3>等开吃</h3>
+            <p>我们当天采摘装箱，顺丰冷链发出，一般次日达，偏远地区 2–3 天。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 行动号召 ============ -->
+    <section class="cta">
+      <div class="container cta-inner">
+        <div>
+          <h2>今天下单，明天开吃</h2>
+          <p>现在下单，送你一盒云南蓝莓试吃装（满 99 元可用）。</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-light" href="tel:13800000000" data-shop-tel>打电话下单</a>
+          <button class="btn btn-outline-light" id="copy-wechat-2" type="button">加微信下单</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ 页脚 ============ -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-logo">
+          <img src="assets/leaf.svg" alt="" width="24" height="24" />
+          <span>果园鲜生</span>
+        </div>
+        <p class="footer-desc">只卖当季水果。产地直发，全程冷链，坏果包赔。</p>
+      </div>
+
+      <div>
+        <h3>逛一逛</h3>
+        <ul>
+          <li><a href="#products">当季鲜果</a></li>
+          <li><a href="#why">为什么选我们</a></li>
+          <li><a href="#story">果园故事</a></li>
+          <li><a href="#order">下单流程</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>联系我们</h3>
+        <ul>
+          <li><a href="tel:13800000000" data-shop-tel><span data-shop="phone">138-0000-0000</span></a></li>
+          <li>微信：<span data-shop="wechat">guoyuan-fresh</span></li>
+          <li>营业时间：每天 8:00 – 21:00</li>
+          <li>发货地：<span data-shop="address">云南省昆明市</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>配送说明</h3>
+        <ul>
+          <li>满 99 元包邮，不满 99 元运费 10 元</li>
+          <li>顺丰冷链，下单后 24 小时内发货</li>
+          <li>坏果包赔，收到 24 小时内拍照反馈</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© <span id="year">2026</span> 果园鲜生 · 本站为演示站点</span>
+      <span>备案号占位：京 ICP 备 00000000 号</span>
+    </div>
+  </footer>
+
+  <!-- ============ 果篮（购物车） ============ -->
+  <div class="overlay" id="overlay"></div>
+
+  <aside class="cart" id="cart" aria-hidden="true" aria-labelledby="cart-title">
+    <header class="cart-head">
+      <h2 id="cart-title">我的果篮</h2>
+      <button class="icon-btn" id="cart-close" type="button" aria-label="关闭果篮">✕</button>
+    </header>
+
+    <div class="cart-body">
+      <ul class="cart-list" id="cart-list"></ul>
+      <p class="cart-empty" id="cart-empty">果篮还是空的，去挑几样吧。</p>
+    </div>
+
+    <footer class="cart-foot">
+      <div class="cart-line"><span>商品小计</span><span id="sum-subtotal">¥0.00</span></div>
+      <div class="cart-line"><span>运费</span><span id="sum-shipping">¥0.00</span></div>
+      <div class="cart-line cart-line-total"><span>合计</span><strong id="sum-total">¥0.00</strong></div>
+      <p class="cart-tip">满 99 元包邮，不满 99 元运费 10 元</p>
+
+      <button class="btn btn-primary btn-block" id="checkout" type="button">复制订单信息</button>
+      <button class="btn btn-ghost btn-block" id="cart-clear" type="button">清空果篮</button>
+    </footer>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
