@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="柠檬">
+  <defs>
+    <radialGradient id="lemonBody" cx="34%" cy="28%" r="82%">
+      <stop offset="0" stop-color="#fff3a0"/>
+      <stop offset=".5" stop-color="#ffd83d"/>
+      <stop offset="1" stop-color="#e0a800"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="100" cy="184" rx="58" ry="8" fill="#2b1a0e" opacity=".08"/>
+  <ellipse cx="100" cy="108" rx="72" ry="54" fill="url(#lemonBody)" transform="rotate(-12 100 108)"/>
+  <circle cx="32" cy="94" r="9" fill="#e0a800"/>
+  <circle cx="168" cy="122" r="9" fill="#e0a800"/>
+  <ellipse cx="76" cy="86" rx="20" ry="12" fill="#fff" opacity=".38" transform="rotate(-24 76 86)"/>
+  <g fill="#d99b00" opacity=".25">
+    <circle cx="94" cy="96" r="2"/><circle cx="118" cy="112" r="2"/><circle cx="72" cy="122" r="2"/>
+    <circle cx="132" cy="88" r="2"/><circle cx="104" cy="134" r="2"/>
+  </g>
+</svg>
