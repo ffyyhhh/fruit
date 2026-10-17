@@ -21,10 +21,10 @@ document.documentElement.classList.add('js');
    ================================================================ */
 const SHOP = {
   name: '果园鲜生',
-  phone: '138-0000-0000',      // 显示用的电话
-  phoneRaw: '13800000000',     // 打电话用的号码（去掉横线）
-  wechat: 'guoyuan-fresh',     // 客服微信号
-  address: '云南省昆明市呈贡区',
+  phone: '188-2335-6789',      // 显示用的电话
+  phoneRaw: '18823356789',     // 打电话用的号码（去掉横线）
+  wechat: 'facai168',     // 客服微信号
+  address: '广东省化州市',
 };
 
 
