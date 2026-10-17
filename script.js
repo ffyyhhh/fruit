@@ -23,7 +23,7 @@ const SHOP = {
   name: '王总水果店',
   phone: '188-2335-6789',      // 显示用的电话
   phoneRaw: '18823356789',     // 打电话用的号码（去掉横线）
-  wechat: 'facai168',     // 客服微信号
+  wechat: 'facai168',          // 客服微信号
   address: '广东省化州市',
 };
 
@@ -192,7 +192,7 @@ function render() {
     li.className = 'cart-item';
 
     li.innerHTML =
-      '<img src="assets/' + item.id + '.svg" alt="" />' +
+      '<img src="assets/' + item.id + '.jpg" alt="" />' +
       '<div class="ci-info">' +
         '<h4>' + item.name + '</h4>' +
         '<p>' + item.spec + '</p>' +
