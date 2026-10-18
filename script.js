@@ -141,7 +141,7 @@ function renderProducts() {
 
     card.innerHTML =
       '<div class="product-media">' + badge +
-        '<img src="' + esc(p.img) + '" alt="' + esc(p.name) + '" loading="lazy" />' +
+        '<img src="' + esc(p.img) + '" alt="' + esc(p.name) + '" loading="lazy" decoding="async" />' +
       '</div>' +
       '<div class="product-body">' +
         '<h3>' + esc(p.name) + '</h3>' +

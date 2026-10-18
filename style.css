@@ -1172,7 +1172,25 @@ button { font-family: inherit; }
 
 @media (max-width: 620px) {
   .section { padding: 64px 0; }
-  .grid-products { grid-template-columns: 1fr; }
+
+  /* 手机上两列并排，不占满一屏 */
+  .grid-products { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .product-body { padding: 12px 12px 14px; }
+  .product-body h3 { font-size: 15px; }
+  .origin { margin-top: 3px; font-size: 11.5px; }
+  .product-foot { padding-top: 10px; gap: 6px; align-items: center; }
+  .price { gap: 4px; }
+  .price strong { font-size: 17px; }
+  .price del { font-size: 10.5px; }
+  .add-btn { padding: 7px 10px; font-size: 12px; }
+  .product-media { padding: 10px; }
+  .tag { top: 8px; left: 8px; padding: 3px 8px; font-size: 11px; }
+
+  /* 首屏少两张图，省流量 */
+  .hero-art { max-width: 300px; }
+  .f2, .f4 { display: none; }
+  .chip { padding: 7px 11px; font-size: 12px; }
+
   .grid-features { grid-template-columns: 1fr; }
   .stats { grid-template-columns: 1fr 1fr; row-gap: 22px; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
