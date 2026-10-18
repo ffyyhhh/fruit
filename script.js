@@ -33,6 +33,24 @@ function money(n) {
   return '¥' + Number(n).toFixed(2);
 }
 
+/* 图片走国内较快的 CDN（jsDelivr），页面和数据仍走 github.io 保证实时 */
+const CDN_BASE = 'https://cdn.jsdelivr.net/gh/ffyyhhh/fruit@main/';
+
+function imgUrl(src) {
+  if (!src) return '';
+  if (/^https?:/i.test(src)) return src;
+  return CDN_BASE + String(src).replace(/^\.?\//, '');
+}
+
+/* CDN 加载失败时，自动退回同目录的本地图片 */
+document.addEventListener('error', function (e) {
+  const img = e.target;
+  if (img && img.tagName === 'IMG' && img.dataset.fallback && !img.dataset.fb) {
+    img.dataset.fb = '1';
+    img.src = img.dataset.fallback;
+  }
+}, true);
+
 // 商品卡上显示的价：39.9 → 39.9，68 → 68.0
 function priceText(n) {
   return Number(n).toFixed(1);
@@ -141,7 +159,7 @@ function renderProducts() {
 
     card.innerHTML =
       '<div class="product-media">' + badge +
-        '<img src="' + esc(p.img) + '" alt="' + esc(p.name) + '" loading="lazy" decoding="async" />' +
+        '<img src="' + esc(imgUrl(p.img)) + '" data-fallback="' + esc(p.img) + '" alt="' + esc(p.name) + '" loading="lazy" decoding="async" />' +
       '</div>' +
       '<div class="product-body">' +
         '<h3>' + esc(p.name) + '</h3>' +
@@ -296,7 +314,7 @@ function renderCart() {
     const li = document.createElement('li');
     li.className = 'cart-item';
     li.innerHTML =
-      '<img src="' + esc(item.img) + '" alt="" />' +
+      '<img src="' + esc(imgUrl(item.img)) + '" data-fallback="' + esc(item.img) + '" alt="" />' +
       '<div class="ci-info">' +
         '<h4>' + esc(item.name) + '</h4>' +
         '<p>' + esc(item.spec) + '</p>' +
