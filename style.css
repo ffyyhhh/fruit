@@ -1464,3 +1464,105 @@ button { font-family: inherit; }
   .ck-big strong { font-size: 38px; }
   .ck-no strong { font-size: 17px; }
 }
+
+
+/* ---------- 19. 物流查询 ---------- */
+.tracking { background: var(--cream-2); }
+
+.track-box {
+  max-width: 760px;
+  padding: 22px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+.track-search {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.track-search input {
+  flex: 1;
+  min-width: 220px;
+  padding: 13px 15px;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.track-search input:focus {
+  outline: 2px solid #ffd9c2;
+  border-color: var(--orange);
+}
+
+.track-search .btn { padding: 13px 26px; }
+
+#track-result { margin-top: 18px; }
+
+.track-card {
+  margin-bottom: 10px;
+  padding: 16px 18px;
+  background: #fffaf3;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  animation: fadeUp .35s ease both;
+}
+
+.track-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.track-row strong {
+  color: var(--ink);
+  font-weight: 800;
+  text-align: right;
+  word-break: break-all;
+}
+
+.track-row .no {
+  font-family: ui-monospace, Consolas, "Courier New", monospace;
+  font-size: 15px;
+  letter-spacing: .04em;
+  color: var(--orange);
+}
+
+.track-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.track-actions .btn {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.track-empty {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #fff6e6;
+  color: #8a5a20;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.track-tip {
+  margin: 16px 0 0;
+  font-size: 12.5px;
+  color: #a99c8d;
+}
+
+@media (max-width: 620px) {
+  .track-search .btn { width: 100%; }
+}

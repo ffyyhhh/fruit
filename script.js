@@ -703,3 +703,78 @@ document.addEventListener('keydown', function (event) {
     menuBtn.setAttribute('aria-expanded', 'false');
   }
 });
+
+/* ---------- 11. 物流查询 ---------- */
+
+(function initTracking() {
+  const input = document.getElementById('track-input');
+  const btn = document.getElementById('track-btn');
+  const box = document.getElementById('track-result');
+  if (!input || !btn || !box) return;
+
+  // 快递公司 → 快递100 的代码
+  const CODES = {
+    '顺丰': 'shunfeng', '顺丰速运': 'shunfeng',
+    '中通': 'zhongtong', '圆通': 'yuantong', '韵达': 'yunda',
+    '申通': 'shentong', '极兔': 'jtexpress', '极兔速递': 'jtexpress',
+    '京东': 'jd', '京东物流': 'jd',
+    'EMS': 'ems', '邮政': 'youzhengguonei', '德邦': 'debangwuliu',
+  };
+
+  function trackUrl(courier, no) {
+    const code = CODES[courier] || '';
+    return 'https://www.kuaidi100.com/chaxun?com=' + code + '&nu=' + encodeURIComponent(no);
+  }
+
+  function card(s) {
+    return '<div class="track-card">' +
+      '<div class="track-row"><span>快递公司</span><strong>' + esc(s.courier || '—') + '</strong></div>' +
+      '<div class="track-row"><span>快递单号</span><strong class="no">' + esc(s.no || '—') + '</strong></div>' +
+      '<div class="track-row"><span>发货时间</span><strong>' + esc(s.date || '—') + '</strong></div>' +
+      '<div class="track-actions">' +
+        '<button class="btn btn-ghost" type="button" data-copy="' + esc(s.no || '') + '">复制单号</button>' +
+        '<a class="btn btn-primary" href="' + trackUrl(s.courier, s.no || '') + '" target="_blank" rel="noopener">去查询物流</a>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function search() {
+    const q = input.value.trim().toLowerCase();
+    if (!q) { toast('请输入订单号或手机尾号'); return; }
+
+    const all = STORE.shipments || [];
+    const hits = all.filter(function (s) {
+      const orderNo = String(s.orderNo || '').toLowerCase();
+      const phone = String(s.phone || '');
+
+      if (orderNo === q) return true;
+      if (/^\d{4}$/.test(q) && phone.slice(-4) === q) return true;
+      return false;
+    });
+
+    if (hits.length === 0) {
+      box.hidden = false;
+      box.innerHTML = '<p class="track-empty">没有查到单号。<br>' +
+        '可能是还没发货，或单号还没录入。可以微信联系客服（' + esc(STORE.shop.wechat) + '）帮你查。</p>';
+      return;
+    }
+
+    box.hidden = false;
+    box.innerHTML = hits.map(card).join('');
+
+    box.querySelectorAll('[data-copy]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        copyText(b.getAttribute('data-copy')).then(function () {
+          toast('单号已复制');
+        }).catch(function () {
+          toast('复制失败，请长按选择');
+        });
+      });
+    });
+  }
+
+  btn.addEventListener('click', search);
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') search();
+  });
+})();

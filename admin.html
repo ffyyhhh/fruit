@@ -149,6 +149,21 @@
     </p>
   </section>
 
+  <section>
+    <h2>⑥ 物流单号（客户可在网站"查物流"里搜到）</h2>
+    <div class="grid">
+      <div style="grid-column:1/-1">
+        <label>每行一条，用逗号分隔：订单号, 手机尾号, 快递公司, 快递单号, 发货日期</label>
+        <textarea id="shipments" rows="8" placeholder="WZ20261018-1809-6789, 6789, 顺丰, SF1234567890, 2026-10-18
+WZ20261018-1810-5678, 5678, 中通, 73123456789, 2026-10-19"></textarea>
+      </div>
+    </div>
+    <p style="margin:10px 0 0;font-size:12px;color:#8a909c">
+      快递公司填：顺丰 / 中通 / 圆通 / 韵达 / 申通 / 极兔 / 京东 / EMS。<br>
+      客户在网站上输入订单号，或手机号后四位，就能看到单号并跳转查询物流。
+    </p>
+  </section>
+
 </div>
 
 <footer class="bar">
@@ -165,7 +180,22 @@
 <script src="data.js"></script>
 <script>
 (function () {
-  const state = JSON.parse(JSON.stringify(window.STORE || {}));
+  const DRAFT_KEY = 'fruit-admin-draft-v1';
+
+  let state;
+  try {
+    const draft = localStorage.getItem(DRAFT_KEY);
+    state = draft ? JSON.parse(draft) : JSON.parse(JSON.stringify(window.STORE || {}));
+  } catch (err) {
+    state = JSON.parse(JSON.stringify(window.STORE || {}));
+  }
+
+  function persist() {
+    try { localStorage.setItem(DRAFT_KEY, JSON.stringify(state)); } catch (err) { /* 忽略 */ }
+  }
+
+  document.addEventListener('input', persist);
+  document.addEventListener('change', persist);
 
   const $ = (id) => document.getElementById(id);
   const toastEl = $('toast');
@@ -216,6 +246,35 @@
   endInput.value = toLocalInput(state.campaign && state.campaign.end);
   endInput.addEventListener('input', () => {
     setPath('campaign.end', endInput.value ? new Date(endInput.value).toISOString() : '');
+  });
+
+  /* ---------- 物流单号 ---------- */
+  const shipEl = $('shipments');
+
+  function shipText() {
+    return (state.shipments || []).map(function (s) {
+      return [s.orderNo, s.phone, s.courier, s.no, s.date].join(', ');
+    }).join('\n');
+  }
+
+  shipEl.value = shipText();
+
+  shipEl.addEventListener('input', function () {
+    state.shipments = shipEl.value.split('\n')
+      .map(function (line) { return line.trim(); })
+      .filter(Boolean)
+      .map(function (line) {
+        const p = line.split(/[,，\t]/).map(function (x) { return x.trim(); });
+        return {
+          orderNo: p[0] || '',
+          phone: p[1] || '',
+          courier: p[2] || '',
+          no: p[3] || '',
+          date: p[4] || '',
+        };
+      });
+
+    persist();
   });
 
   /* ---------- 满减 ---------- */
@@ -300,8 +359,11 @@
       const div = document.createElement('div');
       div.className = 'row';
 
+      const color = p.badgeColor || 'orange';
+      if (!p.badgeColor) p.badgeColor = color;
+
       const opts = COLORS.map(function (c) {
-        return '<option value="' + c[0] + '"' + (p.badgeColor === c[0] ? ' selected' : '') + '>' + c[1] + '</option>';
+        return '<option value="' + c[0] + '"' + (color === c[0] ? ' selected' : '') + '>' + c[1] + '</option>';
       }).join('');
 
       div.innerHTML =
@@ -395,6 +457,14 @@
       off: Number(d.off) || 0,
     }));
 
+    out.shipments = (out.shipments || []).map((s) => ({
+      orderNo: s.orderNo || '',
+      phone: String(s.phone || ''),
+      courier: s.courier || '',
+      no: s.no || '',
+      date: s.date || '',
+    }));
+
     out.products = (out.products || []).map((p) => ({
       id: p.id || ('item' + Math.random().toString(36).slice(2, 8)),
       name: p.name || '',
@@ -403,7 +473,7 @@
       price: Number(p.price) || 0,
       oldPrice: Number(p.oldPrice) || 0,
       badge: p.badge || '',
-      badgeColor: p.badgeColor || 'ink',
+      badgeColor: p.badgeColor || 'orange',
       img: p.img || '',
     }));
 
@@ -449,6 +519,7 @@
 
   $('reload').addEventListener('click', () => {
     if (!confirm('放弃当前修改，重新读取 data.js？')) return;
+    try { localStorage.removeItem(DRAFT_KEY); } catch (err) {}
     location.reload();
   });
 
